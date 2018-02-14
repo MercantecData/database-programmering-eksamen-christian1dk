@@ -2,6 +2,18 @@
 session_start();
 include('./config.php');
 $loggedIn = isset($_SESSION['userID']);
+if (!isset($_SESSION['admin_info']))
+{
+	header('Location: ./index.php');
+}
+if(isset($_POST['userid']) || isset($_POST['Update']))
+{
+
+}
+else
+{
+    header('Location: ./userlist.php');
+}
 
 ?>
 <!DOCTYPE html>

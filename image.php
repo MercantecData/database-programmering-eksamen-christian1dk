@@ -13,8 +13,19 @@ if($loggedIn) {
     }
     else
     {
-        $imageID = $_POST['image'];
+        if(isset($_POST['image']))
+        {
+            $imageID = $_POST['image'];
+        }
+        else
+        {
+            die('You can only view this page when you have clicked an Image');
+        }
     }
+}
+else
+{
+    header('Location: ./index.php');
 }
 ?>
 <!DOCTYPE html>

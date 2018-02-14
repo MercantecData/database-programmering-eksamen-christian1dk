@@ -48,6 +48,15 @@ $conn->close();
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <link rel="stylesheet" href="css/style.css">
 
+<script>
+    function accountType(that) {
+        if (that.value == "user") {
+            document.getElementById("ifYes").style.display = "block";
+        } else {
+            document.getElementById("ifYes").style.display = "none";
+        }
+    }
+</script>
 </head>
 <body>
 <div class="grid">
@@ -81,24 +90,33 @@ $conn->close();
             <div>
                 <label>User or Admin</label>
                 <p>Select user or admin</p>
-                    <select name="create">
+                    <select name="create" onchange="accountType(this);">
                         <option value="user">User</option>
                         <option value="admin">Admin</option>
                     </select>
                 </div>
                 <br>
+                <div id="ifYes">
+                <label>Name</label>
+                <p>Input Full Name</p>
+                <input class="addufield" type="text" 
+                        <?php if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}?> maxlength="100" name="Name" required>
+                </div>
             <?php
                 }
                 else
                 {
-                    echo '<input type="hidden" name="create">';
+                    echo '<input type="hidden" name="create">
+                    <div>
+                    <label>Name</label>
+                    <p>Input Full Name</p>
+                    <input class="addufield" type="text"';
+                            if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}
+                    echo' maxlength="100" name="Name" required>
+                    </div>
+                    ';
                 }
             ?>
-              <label>Name</label>
-              <p>Input Full Name</p>
-              <input class="addufield" type="text" 
-                     <?php if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}?> maxlength="100" name="Name" required>
-            </div>
             <br>
             <div>
               <label>Username</label>

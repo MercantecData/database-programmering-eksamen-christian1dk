@@ -1,7 +1,10 @@
 <?php
 session_start();
 include('./config.php');
-
+if (!isset($_SESSION['admin_info']))
+{
+	header('Location: ./index.php');
+}
 	if(isset($_GET['deleteuser']))
 	{
 		$userID = $_GET['deleteuser'];
