@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Vært: 127.0.0.1
--- Genereringstid: 14. 02 2018 kl. 11:23:52
+-- Genereringstid: 14. 02 2018 kl. 11:59:01
 -- Serverversion: 5.7.14
 -- PHP-version: 7.0.10
 
@@ -74,16 +74,17 @@ CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `username` varchar(32) NOT NULL,
   `password` varchar(64) NOT NULL,
-  `name` varchar(32) NOT NULL
+  `name` varchar(32) NOT NULL,
+  `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Data dump for tabellen `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `password`, `name`) VALUES
-(1, 'kyloren', '$2y$10$EupjaIwmJx4JkMpBN2HWCOD0yeUiQA.30lzstKHZJAwGKOBoIwfSe', 'Ben Solo'),
-(2, 'fShy34', '$2y$10$0fnJIAZpok15XTFeGV9ApePFMJTjAsTJxBXjMyI/qv6Z4yg1pH/Cm', 'Fluttershy');
+INSERT INTO `users` (`id`, `username`, `password`, `name`, `email`) VALUES
+(1, 'kyloren', '$2y$10$EupjaIwmJx4JkMpBN2HWCOD0yeUiQA.30lzstKHZJAwGKOBoIwfSe', 'Ben Solo', 'Ben@Solo.com'),
+(2, 'fShy34', '$2y$10$0fnJIAZpok15XTFeGV9ApePFMJTjAsTJxBXjMyI/qv6Z4yg1pH/Cm', 'Fluttershy', 'Fluttershy@gmail.com');
 
 --
 -- Begrænsninger for dumpede tabeller
@@ -116,7 +117,7 @@ ALTER TABLE `users`
 -- Tilføj AUTO_INCREMENT i tabel `adminusers`
 --
 ALTER TABLE `adminusers`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Tilføj AUTO_INCREMENT i tabel `images`
 --
@@ -126,7 +127,7 @@ ALTER TABLE `images`
 -- Tilføj AUTO_INCREMENT i tabel `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 --
 -- Begrænsninger for dumpede tabeller
 --

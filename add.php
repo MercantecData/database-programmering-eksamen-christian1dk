@@ -11,6 +11,7 @@ include('./config.php');
         $hash = password_hash($_POST['passwd'], PASSWORD_DEFAULT);
         $password = mysqli_real_escape_string($conn, $hash);
         $Name = mysqli_real_escape_string($conn,$_POST['Name']);
+        $Email = mysqli_real_escape_string($conn,$_POST['Email']);
         $Create = mysqli_real_escape_string($conn,$_POST['create']);
 
             if ($Create == 'admin')
@@ -29,7 +30,7 @@ include('./config.php');
             }
             else 
             {
-                $sql = "INSERT INTO Users (username, password, name) VALUES ('$uname', '$password', '$Name')";
+                $sql = "INSERT INTO Users (username, password, name, email) VALUES ('$uname', '$password', '$Name', '$Email')";
                 $result = mysqli_query($conn,$sql);
 
                 if (isset($_SESSION['admin_info']))
@@ -68,9 +69,11 @@ $conn->close();
 <script>
     function accountType(that) {
         if (that.value == "user") {
-            document.getElementById("ifYes").style.display = "block";
+            document.getElementById("name").style.display = "block";
+            document.getElementById("email").style.display = "block";
         } else {
-            document.getElementById("ifYes").style.display = "none";
+            document.getElementById("name").style.display = "none";
+            document.getElementById("email").style.display = "none";
         }
     }
 </script>
@@ -113,11 +116,17 @@ $conn->close();
                     </select>
                 </div>
                 <br>
-                <div id="ifYes">
+                <div id="name">
                 <label>Name</label>
                 <p>Input Full Name</p>
                 <input class="addufield" type="text" 
                         <?php if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}?> maxlength="100" name="Name">
+                </div>
+                <div id="email">
+                <label>Email</label>
+                <p>Input Email</p>
+                <input class="addufield" type="email" 
+                        <?php if(!empty($pwerror)){$Email = $_POST['Email']; echo 'value="'.$Email.'"';}?> maxlength="255" name="Email">
                 </div>
             <?php
                 }
@@ -130,6 +139,13 @@ $conn->close();
                     <input class="addufield" type="text"';
                             if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}
                     echo' maxlength="100" name="Name" required>
+                    </div>
+                    <div>
+                    <label>Email</label>
+                    <p>Input Email</p>
+                    <input class="addufield" type="text"';
+                            if(!empty($pwerror)){$Email = $_POST['Email']; echo 'value="'.$Email.'"';}
+                    echo' maxlength="100" name="Email" required>
                     </div>
                     ';
                 }
