@@ -1,8 +1,8 @@
 <?php
 session_start();
+include('./config.php');
 $loggedIn = isset($_SESSION['userID']);
 if($loggedIn) {
-	$conn = mysqli_connect("localhost", "root", "", "databaseexam");
 	$id =  $_SESSION['userID'];
 
 	//Check if user exist in Database
@@ -14,7 +14,7 @@ if($loggedIn) {
 	}
 	else
 	{
-		header("Location: logout.php?exist=0");
+		//header("Location: logout.php?exist=0");
 	}
 }
 ?>
@@ -23,60 +23,7 @@ if($loggedIn) {
 <head>
 	<title>MercBook</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	<style type="text/css">
-		.grid {
-			display: grid;
-			grid-template-areas: "topbar login" "myContent myContent";
-			grid-template-columns: auto 135px;
-			grid-template-rows: 110px auto;
-			max-width: 535px;
-			margin-left: auto;
-			margin-right: auto;
-			grid-gap: 20px;
-		}
-
-		.topbar{
-			grid-area: topbar;
-			background-color: lightgray;
-			color:grey;
-			font-family: sans-serif;
-			padding-left: 15px;
-		}
-
-		.login{
-			grid-area: login;
-		}
-
-		.content{
-			grid-area: myContent;
-			background-color: white;
-			padding:10px;
-		}
-
-		.myTextArea {
-			min-width: 100px;
-			max-width: 535px;
-		}
-
-		input{
-			width: 95%;
-		}
-
-		p {
-			text-align: justify;
-		}
-
-		body {
-			font-family: sans-serif;
-			background-color: darkgrey;
-		}
-
-		.myImage {
-			max-width: 48%;
-			margin: 1%;
-		}
-
-	</style>
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 	<div class="grid">
@@ -91,6 +38,9 @@ if($loggedIn) {
 				Brugernavn <input type="text" name="username">
 				Password<input type="password" name="password">
 				<input type="submit" name="submit" value="login">
+			</form>
+			<form method="post" action="add.php">
+				<input type="submit" name="submit" value="Join">
 			</form>
 			<?php else:?>
 			<form method="POST" action="logout.php">

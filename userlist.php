@@ -1,5 +1,6 @@
 <?php
-	$conn = mysqli_connect("localhost", "root", "", "DatabaseExam");
+session_start();
+include('./config.php');
 
 	if(isset($_GET['deleteuser']))
 	{
@@ -16,19 +17,37 @@
 <html>
 <head>
 	<title>User List</title>
-
+	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-	<h1>Users:</h1>
-	<?php 
-	while($row = $result->fetch_assoc()){
-		echo $row["name"];
-		echo "
-		<a onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
-		href='?deleteuser=".$row['id']."'>delete</a>
-		<br>
-		";
-	}
-	?>
+<div class="grid">
+		<div class="topbar">
+			<h1>MercBook</h1>
+			<h2>Billeder fra Mercantec</h2>
+		</div>
+
+		<div class="login">
+			<form method="POST" action="logout.php">
+				<input type="submit" name="submit" value="logout">
+			</form>
+			<br>
+			<form method="post" action="add.php">
+				<input type="submit" name="submit" value="Add brugere">
+			</form>
+		</div>
+		<div class="content">
+			<h1>Users:</h1>
+			<?php 
+			while($row = $result->fetch_assoc()){
+				echo $row["name"];
+				echo "
+				<a onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
+				href='?deleteuser=".$row['id']."'>delete</a>
+				<br>
+				";
+			}
+			?>
+		</div>
+	</div>
 </body>
 </html>

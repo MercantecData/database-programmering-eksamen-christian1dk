@@ -1,0 +1,51 @@
+.grid {
+			display: grid;
+			grid-template-areas: "topbar login" "myContent myContent";
+			grid-template-columns: auto 135px;
+			grid-template-rows: 110px auto;
+			max-width: 535px;
+			margin-left: auto;
+			margin-right: auto;
+			grid-gap: 20px;
+		}
+
+		.topbar{
+			grid-area: topbar;
+			background-color: lightgray;
+			color:grey;
+			font-family: sans-serif;
+			padding-left: 15px;
+		}
+
+		.login{
+			grid-area: login;
+		}
+
+		.content{
+			grid-area: myContent;
+			background-color: white;
+			padding:10px;
+		}
+
+		.myTextArea {
+			min-width: 100px;
+			max-width: 535px;
+		}
+
+		input{
+			width: 95%;
+		}
+
+		p {
+			text-align: justify;
+		}
+
+		body {
+			font-family: sans-serif;
+			background-color: darkgrey;
+		}
+
+		.myImage {
+			max-width: 48%;
+			margin: 1%;
+		}
