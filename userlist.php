@@ -41,9 +41,14 @@ include('./config.php');
 			while($row = $result->fetch_assoc()){
 				echo $row["name"];
 				echo "
-				<a onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
-				href='?deleteuser=".$row['id']."'>delete</a>
 				<br>
+				<form method='post' action='edit.php'>
+						<button type='submit' name='userid' value='".$row["id"]."' id='user'>Edit</button>
+				<form>";
+				echo "
+				<button onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
+				href='?deleteuser=".$row['id']."'>delete</button>
+				<br><br>
 				";
 			}
 			?>
@@ -51,5 +56,24 @@ include('./config.php');
 			<a href="index.php">Back</a>
 		</div>
 	</div>
+	<script>
+
+$(document).ready(function() {
+     $('#user').click(function() {
+         var userid = $('#userid').val();
+         $.ajax({
+             url:"edit.php",
+             type:"post",
+             data:{userid:userid},
+             success:function(response){
+                console.log('success ajax');
+             },
+             error:function(response){
+                console.log('error ajax');
+             }
+         });
+     });
+});
+</script>
 </body>
 </html>
