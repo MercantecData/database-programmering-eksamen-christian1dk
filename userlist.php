@@ -5,6 +5,7 @@ if (!isset($_SESSION['admin_info']))
 {
 	header('Location: ./index.php');
 }
+
 	if(isset($_GET['deleteuser']))
 	{
 		$userID = $_GET['deleteuser'];
@@ -49,8 +50,8 @@ if (!isset($_SESSION['admin_info']))
 						<button type='submit' name='userid' value='".$row["id"]."' id='user'>Edit</button>
 				<form>";
 				echo "
-				<button onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
-				href='?deleteuser=".$row['id']."'>delete</button>
+				<button><a onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
+				href='?deleteuser=".$row['id']."'>delete</a></button>
 				<br><br>
 				";
 			}

@@ -13,16 +13,33 @@ include('./config.php');
         $Name = mysqli_real_escape_string($conn,$_POST['Name']);
         $Create = mysqli_real_escape_string($conn,$_POST['create']);
 
-        echo $Create;
             if ($Create == 'admin')
             {
                 $sql = "INSERT INTO adminusers (username, password) VALUES ('$uname', '$password')";
                 $result = mysqli_query($conn,$sql);
+
+                if (isset($_SESSION['admin_info']))
+                {
+                    header('Location: ./userlist.php');
+                }
+                else
+                {
+                    header('Location: ./index.php');
+                }
             }
             else 
             {
                 $sql = "INSERT INTO Users (username, password, name) VALUES ('$uname', '$password', '$Name')";
                 $result = mysqli_query($conn,$sql);
+
+                if (isset($_SESSION['admin_info']))
+                {
+                    header('Location: ./userlist.php');
+                }
+                else
+                {
+                    header('Location: ./index.php');
+                }
             }
         }
         else {
@@ -100,13 +117,13 @@ $conn->close();
                 <label>Name</label>
                 <p>Input Full Name</p>
                 <input class="addufield" type="text" 
-                        <?php if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}?> maxlength="100" name="Name" required>
+                        <?php if(!empty($pwerror)){$Name = $_POST['Name']; echo 'value="'.$Name.'"';}?> maxlength="100" name="Name">
                 </div>
             <?php
                 }
                 else
                 {
-                    echo '<input type="hidden" name="create">
+                    echo '
                     <div>
                     <label>Name</label>
                     <p>Input Full Name</p>

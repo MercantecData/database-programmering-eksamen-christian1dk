@@ -1,3 +1,28 @@
+Christian Normann Sørensen
+
+extra features:
+-Admin
+    - Create
+        Only show name option if user is selected
+        - Admins
+        - Users
+    -
+     - Edit/Update
+        - Users
+- User
+    - Create
+        - User
+    - Database info
+        - Email
+
+For deleting an image:
+click image for see it in full view, here do you have the option to delete it.
+
+Updated Database:
+databaseexam.sql
+
+--------------------------------
+
 EKSAMEN I DATABASE PROGRAMMERING
 I mappen finder i en række php filer. Indstil som det første jeres XAMPP til at pege på denne mappe. I filen database.sql finder i en database i skal importere for at denne kode virker.
 
