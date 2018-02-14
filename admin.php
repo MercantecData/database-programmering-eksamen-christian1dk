@@ -34,3 +34,4 @@ if(isset($_POST["submit"])) {
 	<input type="hidden" name="strongkey" value="Lzk34yR71?hrIP">
 	<input type="submit" name="submit" value="login">
 </form>
+<a href="index.php">Back</a>

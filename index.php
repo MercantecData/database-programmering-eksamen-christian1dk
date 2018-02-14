@@ -58,7 +58,11 @@ if($loggedIn) {
 				echo "<h2>Dine Billeder</h2>";
 				while($row = $imageresult->fetch_assoc()) {
 					$url = $row["imageURL"];
-					echo "<img class = 'myImage' src='$url'>";
+					$id = $row["id"];
+					echo "<form method='post' action='image.php'>";
+					echo "<input type='image' id='imageview' class='myImage' name='image' value='$id' src='$url'>";
+					//echo "<a id='imageview' href='image.php'><img class = 'myImage' src='$url'></a>";
+					echo "<form>";
 				}
 			} 
 			?>
@@ -82,5 +86,24 @@ if($loggedIn) {
 
 	<a href="admin.php">Admin Login</a>
 
+<script>
+
+$(document).ready(function() {
+     $('#imageview').click(function() {
+         var image = $('#image').val();
+         $.ajax({
+             url:"image.php",
+             type:"post",
+             data:{image:image},
+             success:function(response){
+                console.log('success ajax');
+             },
+             error:function(response){
+                console.log('error ajax');
+             }
+         });
+     });
+});
+</script>
 </body>
 </html>

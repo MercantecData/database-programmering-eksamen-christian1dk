@@ -121,7 +121,7 @@ $conn->close();
             </div>
             <input class="button" type="submit" name='user' value="Save">
         </form>
-        <a class="button button-primary" href="index.php">Back</a>
+        <a href="index.php">Back</a>
 
 </div>
 </div>

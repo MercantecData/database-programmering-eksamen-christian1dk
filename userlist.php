@@ -47,6 +47,8 @@ include('./config.php');
 				";
 			}
 			?>
+			<br>
+			<a href="index.php">Back</a>
 		</div>
 	</div>
 </body>
