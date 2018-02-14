@@ -1,6 +1,14 @@
 <?php
 	$conn = mysqli_connect("localhost", "root", "", "DatabaseExam");
-	$sql = "SELECT id FROM users WHERE 1";
+
+	if(isset($_GET['deleteuser']))
+	{
+		$userID = $_GET['deleteuser'];
+		$sql = "delete from users where ID = ".$userID;
+		mysqli_query($conn,$sql);
+	}
+
+	$sql = "SELECT id, name FROM users WHERE 1";
 	$result = $conn->query($sql);
 ?>
 
@@ -15,7 +23,11 @@
 	<?php 
 	while($row = $result->fetch_assoc()){
 		echo $row["name"];
-		echo "   <a href='?'>delete</a>";
+		echo "
+		<a onClick=\"javascript: return confirm('Are you sure you want to delete this user?');\" 
+		href='?deleteuser=".$row['id']."'>delete</a>
+		<br>
+		";
 	}
 	?>
 </body>

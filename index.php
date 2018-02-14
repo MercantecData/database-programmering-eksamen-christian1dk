@@ -2,10 +2,20 @@
 session_start();
 $loggedIn = isset($_SESSION['userID']);
 if($loggedIn) {
-	id = $SESSION['userID'];
 	$conn = mysqli_connect("localhost", "root", "", "databaseexam");
-	$sql = SELECT id, imageURL FROM images WHERE owner = id;
-	$imageresult = $conn->query($sql);
+	$id =  $_SESSION['userID'];
+
+	//Check if user exist in Database
+	$sqlUserCheck = "SELECT id FROM users WHERE id = $id";
+	$result = $conn->query($sqlUserCheck);
+	if($result->num_rows > 0) {
+		$sql = "SELECT id, imageURL FROM images WHERE owner = $id";
+		$imageresult = $conn->query($sql);
+	}
+	else
+	{
+		header("Location: logout.php?exist=0");
+	}
 }
 ?>
 <!DOCTYPE html>
@@ -77,7 +87,7 @@ if($loggedIn) {
 
 		<div class="login">
 			<?php if(!$loggedIn):?>
-			<form method="POST" action="login.php">
+			<form method="post" action="login.php">
 				Brugernavn <input type="text" name="username">
 				Password<input type="password" name="password">
 				<input type="submit" name="submit" value="login">
@@ -94,10 +104,10 @@ if($loggedIn) {
 				Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus feugiat quis purus ut bibendum. Mauris sit amet lacinia arcu. Vivamus fringilla magna id augue luctus interdum. 
 
 			<?php 
-			if$imageresult) {
+			if($loggedIn) {
 				echo "<h2>Dine Billeder</h2>";
 				while($row = $imageresult->fetch_assoc()) {
-					$url = $row["imageUrl"];
+					$url = $row["imageURL"];
 					echo "<img class = 'myImage' src='$url'>";
 				}
 			} 
